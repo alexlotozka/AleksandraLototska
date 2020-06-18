@@ -30,11 +30,11 @@ namespace Lab
 		{
 			name = "Aleksandra";
 			surname = "Lototska";
-			Date = new DateTime(2002, 5, 21, 10, 00, 00);
+			Date = new DateTime(2002);
 		}
 		public override string ToString()
 		{
-			return $"{name} {surname} was born in {Date}";
+			return $"{name} {surname} {Date}";
 		}
 		public virtual string ToShortString()
 		{

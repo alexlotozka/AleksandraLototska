@@ -7,10 +7,10 @@ namespace Lab
         static void Main(string[] args)
         {
             ResearchTeam g = new ResearchTeam();
-            g.AddPapers(new Paper() , new Paper("Wallet" , new DateTime (1995 , 11 , 12)) , new Paper("War and Peace", new DateTime(1865, 9, 12)));
+            g.AddPapers(new Paper() , new Paper("Parfumer" , new DateTime (1995 , 11 , 12) , new Person ("Patrik", "Zuskind" , new DateTime(1978))) , new Paper("War and Peace", new DateTime(1865), new Person ("Leo" ,"Tolstoi",new DateTime(1828, 9, 12))));
             Console.WriteLine(g.ToString());
             Console.WriteLine(g.ToShortString());
-            Console.WriteLine(g.TheLast);
+            //Console.WriteLine(g.TheLast);
             //Person person1 = new Person("Alexandra", "Lototska" , new DateTime( 2000, 23, 9) );
             //Person person2 = new Person("Dima", "Ermusevych", new DateTime(1996, 17, 7));
             //Person person3 = new Person("Julia", "Godunova", new DateTime(1994, 15, 4));
@@ -31,8 +31,20 @@ namespace Lab
 
             r.DeepCopy();
 
-            Paper q = new Paper("No article", new DateTime(2000, 00, 00), new Person("Oliver", "Queen", new DateTime(1939, 9, 1)));
-            Paper qw = new Paper("No article", new DateTime(2000, 00, 00), new Person("Lucifer", "Morningstar", new DateTime(1939, 9, 1)));
+            g.AddPapers(new Paper("No article", new DateTime(2000, 1, 23), new Person("Oliver", "Queen", new DateTime(1939, 9, 1))));
+            g.AddPapers(new Paper("No article", new DateTime(2000, 2, 12), new Person("Lucifer", "Morningstar", new DateTime(1939, 9, 1))));
+
+            Console.WriteLine("Last articles:");
+            foreach (Paper a in g.GetLastArticles(20))
+            {
+                Console.WriteLine(a.NameOfPublication);
+            }
+
+            Console.WriteLine("Authors without articles:");
+            foreach (Paper a in g.GetMembWithout("No"))
+            {
+                Console.WriteLine(a.AuthorName);
+            }
         }
     }
 }

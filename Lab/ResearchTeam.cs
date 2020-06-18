@@ -55,7 +55,7 @@ namespace Lab
 
 		private Paper theLast;
 
-		private ArrayList PublicationsList = new ArrayList();
+		public ArrayList PublicationsList = new ArrayList();
 		public void AddPapers(params Paper[] publicationList)
 		{
 			foreach (Paper pp in publicationList)
@@ -157,7 +157,29 @@ namespace Lab
 				
 			}
 		}
+		public IEnumerable GetLastArticles(int num)
+		{
+			foreach (Paper qq in PublicationsList)
+			{
+				Paper f = new Paper();
+				DateTime b = new DateTime(2020,1,1);
+				int compareValue = b.CompareTo(f.DateOfPublication); 
+				if (compareValue < num)
+					yield return qq;
+			}
+   
+		}
+		public IEnumerable GetMembWithout(string bb)
+		{
+			foreach (Paper qq in PublicationsList)
+			{
+				int indexOfString = qq.NameOfPublication.IndexOf(bb);
+				if (indexOfString >= 0 && indexOfString < 100)
+					yield return qq;
+			}
 
+			
+		}
 	}
 }
 
