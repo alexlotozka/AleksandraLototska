@@ -95,7 +95,7 @@ namespace Lab
 				sb.Append($" {pp.NameOfPublication} ,");
 			}
 			
-			StringBuilder sb1 = new StringBuilder("Members:");
+			StringBuilder sb1 = new StringBuilder("\nMembers:");
 			foreach (Team qq in MemberList)
 			{
 				sb.Append($" {qq.NameOrganisation} ,");
@@ -157,17 +157,18 @@ namespace Lab
 				
 			}
 		}
+		
 		public IEnumerable GetLastArticles(int num)
 		{
 			foreach (Paper qq in PublicationsList)
 			{
-				Paper f = new Paper();
-				DateTime b = new DateTime(2020,1,1);
-				int compareValue = b.CompareTo(f.DateOfPublication); 
+				int yearOfPubl = qq.DateOfPublication.Year;
+				const int hellOfAYear = 2020;
+				int compareValue = hellOfAYear - yearOfPubl;
 				if (compareValue < num)
 					yield return qq;
 			}
-   
+
 		}
 		public IEnumerable GetMembWithout(string bb)
 		{
